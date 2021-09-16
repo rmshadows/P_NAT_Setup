@@ -2,23 +2,11 @@
 # 运行Frpc
 
 import os
-
+import threading
 
 Windows = os.path.sep == "\\"
 frp_w = os.path.join("res", "frp", "windows", "frpc.exe")
 frp_l = os.path.join("res", "frp", "linux", "frpc")
-
-def execCommand(cmd):
-    """
-    只有返回值
-    :return: result
-    """
-    r = ""
-    try:
-        r = os.popen(cmd).read()
-    except Exception as e:
-        print(e)
-    return r
 
 
 def loadConf():
@@ -39,6 +27,20 @@ def loadConf():
     return conf
 
 
+class frpThread (threading.Thread):
+    def __init__(self, cmd):
+        threading.Thread.__init__(self)
+        self.cmd = cmd
+    def run(self):
+        print ("开始线程：" + self.cmd)
+        # execCommand(self.cmd)
+        try:
+            os.popen(self.cmd)
+        except Exception as e:
+            print(e)
+        print ("退出线程：" + self.cmd)
+
+
 if __name__ == '__main__':
     c = loadConf()
     frp = ""
@@ -46,7 +48,7 @@ if __name__ == '__main__':
         frp = frp_w
     else:
         frp = frp_l
-    cmd = "{} -c {}".format(frp, c)
+    cmd = "start cmd /k {} -c {}".format(frp, c)
     print(cmd)
-    execCommand(cmd)
+    frpThread(cmd).start()
 
