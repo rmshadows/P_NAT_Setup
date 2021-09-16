@@ -31,11 +31,13 @@ class frpThread (threading.Thread):
     def __init__(self, cmd):
         threading.Thread.__init__(self)
         self.cmd = cmd
+
+
     def run(self):
         print ("开始线程：" + self.cmd)
-        # execCommand(self.cmd)
         try:
-            os.popen(self.cmd)
+            print("启动FRP中。。。终止请按 Ctrl+C")
+            os.system(self.cmd)
         except Exception as e:
             print(e)
         print ("退出线程：" + self.cmd)
@@ -48,7 +50,12 @@ if __name__ == '__main__':
         frp = frp_w
     else:
         frp = frp_l
-    cmd = "start cmd /k {} -c {}".format(frp, c)
+    cmd = "{} -c {}".format(frp, c)
+    if Windows:
+        cmd = "start cmd /k " + cmd
     print(cmd)
-    frpThread(cmd).start()
+    frp_r = frpThread(cmd)
+    frp_r.start()
+    if not Windows:
+        frp_r.join()
 
