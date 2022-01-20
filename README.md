@@ -14,10 +14,13 @@
 ## 文件列表
 
 - `ZeroTier.py`——部署Zero Tier。用户端/开发端，两边都需要加入ZeroTier网络。
-- `frpc.py`——部署frp连接。开发端，通过FRP暴露在公网等待用户连接。
+- `frpc.py`——部署frp连接。开发端，通过FRP暴露在公网等待用户连接。配合JRA、Dayon等项目。
+- `TightVNCServer.py`——部署Windows端TightVNC。用户端，配合JRA、Dayon项目。注意：仅限Windows。(未完成)
 
 ## 更新日志
 
+- 2022.01.21——1.0.1
+  - 添加TightVNC脚本(Windows Only)
 - 2021.09.16——1.0.0
   - 完成了ZeroTier和FRP的部署脚本
 
