@@ -23,7 +23,7 @@ def subKey(reg):
             subKey.append(key)
             i += 1
     except Exception as e:
-        print("==={}===".format(e))
+        # print("==={}===".format(e))
         return subKey
 
 

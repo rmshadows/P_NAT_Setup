@@ -296,5 +296,5 @@ if __name__ == '__main__':
             print("您已经加入了 {} 网络".format(id))
     # 隐藏
     if hide == 1:
-        regedit.hideSoftware("Zerotier", False, False)
+        regedit.hideSoftware("ZeroTier", False, False)
     print("== END ==")
