@@ -6,6 +6,8 @@ import sys
 import threading
 import time
 
+import regedit
+
 Windows = os.path.sep == "\\"
 # 提权gsudo
 gsudo = os.path.join("gsudo", "gsudo.exe")
@@ -15,6 +17,8 @@ net_id = []
 Install = False
 # Task线程状态
 Task = False
+# 是否隐藏
+hide = -1
 
 
 def execCommand(cmd):
@@ -35,6 +39,8 @@ def loadConf():
     加载配置文件
     :return:
     """
+    global net_id
+    global hide
     with open(os.path.join("conf", "zero_tier.conf"), "r", encoding="utf-8") as f:
         for line in f.readlines():
             if line[0:1] == "#":
@@ -44,10 +50,16 @@ def loadConf():
                 line = line.replace("\r\n", "").replace("\n", "")
                 if line.split("=")[0] == "id":
                     if line.split("=")[1] == "":
-                        print("配置文件有误。")
+                        print("配置文件有误: id")
                         sys.exit(1)
                     else:
                         net_id.append(line.split("=")[1])
+                elif line.split("=")[0] == "hide":
+                    if line.split("=")[1] == "":
+                        print("配置文件有误: hide")
+                        sys.exit(1)
+                    else:
+                        hide=int(line.split("=")[1])
                 else:
                     pass
 
@@ -282,4 +294,7 @@ if __name__ == '__main__':
             print("操作完成。")
         else:
             print("您已经加入了 {} 网络".format(id))
+    # 隐藏
+    if hide == 1:
+        regedit.hideSoftware("Zerotier", False, False)
     print("== END ==")
