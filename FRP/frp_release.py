@@ -23,19 +23,19 @@ if __name__ == '__main__':
     # 路径化
     CONF = op.join(".", "..", "conf", CONF)
     print(CONF)
-    if op.exists(CONF):
+    if not op.exists(str(CONF)):
         print("File or Directory not exist ! ")
         exit(1)
     RESD = op.join(".", "..", "res", RESD)
     print(RESD)
-    if op.exists(RESD):
+    if not op.exists(RESD):
         print("File or Directory not exist ! ")
         exit(1)
     a = MAIN.copy()
     MAIN = []
     for i in a:
         i = op.join(".", "..", i)
-        if op.exists(i):
+        if not op.exists(i):
             print("File or Directory not exist ! ")
             exit(1)
         MAIN.append(i)
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     SHARE = []
     for i in a:
         i = op.join(".", "..", i)
-        if op.exists(i):
+        if not op.exists(i):
             print("File or Directory not exist ! ")
             exit(1)
         SHARE.append(i)
