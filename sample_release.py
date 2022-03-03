@@ -6,13 +6,13 @@ import shutil
 
 ### 请看清楚是文件还是文件夹！
 # 配置文件
-CONF = "frpc.conf"
+CONF = ".conf"
 # 资源文件夹名
-RESD = "frp"
+RESD = ""
 # 导出文件夹
-EXPORTD = "FRP_AUTO"
+EXPORTD = "_AUTO"
 # 专属文件名
-MAIN = ["frpc.py"]
+MAIN = [".py"]
 # 共享文件名
 SHARE = ["favicon.ico", "LICENSE", "README.md"]
 # 是否需要GSUDO

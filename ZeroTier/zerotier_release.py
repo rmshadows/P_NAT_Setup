@@ -6,15 +6,15 @@ import shutil
 
 ### 请看清楚是文件还是文件夹！
 # 配置文件
-CONF = "frpc.conf"
+CONF = "zero_tier.conf"
 # 资源文件夹名
-RESD = "frp"
+RESD = "zero_tier_one"
 # 导出文件夹
-EXPORTD = "FRP_AUTO"
+EXPORTD = "ZEROTIER_AUTO"
 # 专属文件名
-MAIN = ["frpc.py"]
+MAIN = ["ZeroTier.py"]
 # 共享文件名
-SHARE = ["favicon.ico", "LICENSE", "README.md"]
+SHARE = ["favicon.ico", "LICENSE", "README.md", "regedit.py"]
 # 是否需要GSUDO
 GSUDO = True
 
