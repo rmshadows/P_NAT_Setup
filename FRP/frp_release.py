@@ -19,12 +19,36 @@ GSUDO = True
 
 
 if __name__ == '__main__':
-    print("====>>>>Required Files: ")
+    print("====>>>>Check Required Files: ")
     # 路径化
     CONF = op.join(".", "..", "conf", CONF)
     print(CONF)
+    if op.exists(CONF):
+        print("File or Directory not exist ! ")
+        exit(1)
     RESD = op.join(".", "..", "res", RESD)
     print(RESD)
+    if op.exists(RESD):
+        print("File or Directory not exist ! ")
+        exit(1)
+    a = MAIN.copy()
+    MAIN = []
+    for i in a:
+        i = op.join(".", "..", i)
+        if op.exists(i):
+            print("File or Directory not exist ! ")
+            exit(1)
+        MAIN.append(i)
+    print(MAIN)
+    a = SHARE.copy()
+    SHARE = []
+    for i in a:
+        i = op.join(".", "..", i)
+        if op.exists(i):
+            print("File or Directory not exist ! ")
+            exit(1)
+        SHARE.append(i)
+    print(SHARE)
     EXPORTD = op.join(".", EXPORTD)
     print("====>>>>Export to :{}".format(EXPORTD))
     # 删除文件夹
