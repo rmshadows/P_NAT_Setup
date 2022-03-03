@@ -21,36 +21,31 @@ GSUDO = True
 if __name__ == '__main__':
     print("====>>>>Check Required Files: ")
     # 路径化
-    CONF = op.join(".", "..", "conf", CONF)
-    print(CONF)
-    if not op.exists(str(CONF)):
+    conf_srcf = op.join(".", "..", "conf", CONF)
+    print(conf_srcf)
+    if not op.exists(conf_srcf):
         print("File or Directory not exist ! ")
         exit(1)
-    RESD = op.join(".", "..", "res", RESD)
-    print(RESD)
-    if not op.exists(RESD):
+    resd_srcd = op.join(".", "..", "res", RESD)
+    print(resd_srcd)
+    if not op.exists(resd_srcd):
         print("File or Directory not exist ! ")
         exit(1)
-    a = MAIN.copy()
-    MAIN = []
-    for i in a:
+    for i in MAIN:
         i = op.join(".", "..", i)
+        print(i)
         if not op.exists(i):
             print("File or Directory not exist ! ")
             exit(1)
-        MAIN.append(i)
-    print(MAIN)
-    a = SHARE.copy()
-    SHARE = []
-    for i in a:
+    for i in SHARE:
         i = op.join(".", "..", i)
+        print(i)
         if not op.exists(i):
             print("File or Directory not exist ! ")
             exit(1)
-        SHARE.append(i)
-    print(SHARE)
     EXPORTD = op.join(".", EXPORTD)
-    print("====>>>>Export to :{}".format(EXPORTD))
+    print("====>>>>Export to :")
+    print(EXPORTD)
     # 删除文件夹
     print("====>>>>Remove old exports...")
     if op.exists(EXPORTD):
@@ -64,10 +59,24 @@ if __name__ == '__main__':
             exit(1)
     print("====>>>>Make export directory...")
     os.mkdir(EXPORTD)
+    os.mkdir(op.join(EXPORTD, "conf"))
+    os.mkdir(op.join(EXPORTD, "res"))
     # GSUDO
     print("====>>>>Copy gsudo...")
     gsudod = op.join(".", "..", "gsudo")
     shutil.copytree(gsudod, op.join(EXPORTD, "gsudo"))
-
-
-
+    # 复制文件
+    print("====>>>>Copy conf file...")
+    shutil.copyfile(conf_srcf, op.join(EXPORTD, "conf", CONF))
+    print("====>>>>Copy res file...")
+    shutil.copytree(resd_srcd, op.join(EXPORTD, "res", RESD))
+    print("====>>>>Copy python file...")
+    for i in MAIN:
+        srcf = op.join(".", "..", i)
+        dstf = op.join(".", "..", i)
+        shutil.copyfile(srcf, dstf)
+    print("====>>>>Copy lib file...")
+    for i in SHARE:
+        srcf = op.join(".", "..", i)
+        dstf = op.join(".", "..", i)
+        shutil.copyfile(srcf, dstf)
