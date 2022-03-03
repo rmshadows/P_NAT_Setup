@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # GSUDO
     print("====>>>>Copy gsudo...")
     gsudod = op.join(".", "..", "gsudo")
-    shutil.copytree(gsudod, EXPORTD)
+    shutil.copytree(gsudod, op.join(EXPORTD, "gsudo"))
 
 
 
