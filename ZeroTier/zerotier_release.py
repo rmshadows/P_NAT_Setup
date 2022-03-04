@@ -8,15 +8,13 @@ import shutil
 # 配置文件
 CONF = "zero_tier.conf"
 # 资源文件夹名
-RESD = "zero_tier_one"
+RESD = ["gsudo", "zero_tier_one"]
 # 导出文件夹
 EXPORTD = "ZEROTIER_AUTO"
 # 专属文件名
 MAIN = ["ZeroTier.py"]
 # 共享文件名
 SHARE = ["favicon.ico", "LICENSE", "README.md", "regedit.py"]
-# 是否需要GSUDO
-GSUDO = True
 
 
 def addition():
@@ -24,7 +22,12 @@ def addition():
     补充步骤
     :return:
     """
-    pass
+    print("====>>>>Customize...")
+    fn = "PyinstallerZeroTier.bat"
+    print("====>>>>Copy {}...".format(fn))
+    srf = op.join(".", fn)
+    dsf = op.join(".", EXPORTD, fn)
+    shutil.copyfile(srf, dsf)
 
 
 if __name__ == '__main__':
@@ -35,11 +38,12 @@ if __name__ == '__main__':
     if not op.exists(conf_srcf):
         print("File or Directory not exist ! ")
         exit(1)
-    resd_srcd = op.join(".", "..", "res", RESD)
-    print(resd_srcd)
-    if not op.exists(resd_srcd):
-        print("File or Directory not exist ! ")
-        exit(1)
+    for i in RESD:
+        i = op.join(".", "..","res", i)
+        print(i)
+        if not op.exists(i):
+            print("File or Directory not exist ! ")
+            exit(1)
     for i in MAIN:
         i = op.join(".", "..", i)
         print(i)
@@ -70,15 +74,14 @@ if __name__ == '__main__':
     os.mkdir(EXPORTD)
     os.mkdir(op.join(EXPORTD, "conf"))
     os.mkdir(op.join(EXPORTD, "res"))
-    # GSUDO
-    print("====>>>>Copy gsudo...")
-    gsudod = op.join(".", "..", "gsudo")
-    shutil.copytree(gsudod, op.join(EXPORTD, "gsudo"))
     # 复制文件
     print("====>>>>Copy conf file...")
     shutil.copyfile(conf_srcf, op.join(EXPORTD, "conf", CONF))
     print("====>>>>Copy res file...")
-    shutil.copytree(resd_srcd, op.join(EXPORTD, "res", RESD))
+    for i in RESD:
+        srcd = op.join(".", "..","res", i)
+        dstd = op.join(EXPORTD, "res", i)
+        shutil.copytree(srcd, dstd)
     print("====>>>>Copy python file...")
     for i in MAIN:
         srcf = op.join(".", "..", i)

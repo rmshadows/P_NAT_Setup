@@ -10,7 +10,7 @@ import regedit
 
 Windows = os.path.sep == "\\"
 # 提权gsudo
-gsudo = os.path.join("gsudo", "gsudo.exe")
+gsudo = os.path.join("res", "gsudo", "gsudo.exe")
 # 要加入的网络
 net_id = []
 # 安装状态
