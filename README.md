@@ -23,10 +23,10 @@
 
 - `frpc.py`——部署frp连接。开发端，通过FRP暴露在公网等待用户连接。配合JRA、Dayon等项目。
 
-### ndp48(.Net)
+### ndp(.Net)
 
-- `download.Net48.bat`——用于下载`.Net`4.8版本
-- `install.Net48.bat`——用于安装`.Net`4.8版本
+- `download.Net.bat`——用于下载`.Net`版本
+- `install.Net.bat`——用于安装`.Net`版本
 
 ### Tight VNC
 
@@ -35,6 +35,8 @@
 
 ### ZeroTier
 
+>Required .Net > 4.5
+
 - `ZeroTier.py`——部署Zero Tier。用户端/开发端，两边都需要加入ZeroTier网络，选配是否隐藏在卸载列表。
 - `PyinstallerZeroTier.bat`——使用`pyinstaller`生成`exe`文件
 
@@ -42,7 +44,7 @@
 
 - `regedit.py` —— 操作Windows注册表
 - res
-  - `gsudo`——Windows提权工具 | [Github](https://github.com/gerardog/gsudo)
+  - `gsudo`——Windows提权工具 | [Github](https://github.com/gerardog/gsudo) 要求.Net > 4.0
   - `wget`——[wgetwin-1_5_3_1](http://www.interlog.com/~tcharron/wgetwin-1_5_3_1-binary.zip) from http://www.interlog.com/~tcharron/wgetwin.html
 
 ## 使用方法
@@ -51,6 +53,8 @@
 
 ## 更新日志
 
+- 2022.03.05——1.0.4
+  - 添加了微软.Net安装脚本
 - 2022.03.04——1.0.3
   - 更新了部署脚本
   - 更新目录结构

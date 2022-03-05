@@ -8,7 +8,7 @@ import shutil
 # 资源文件夹名
 RESD = ["wget"]
 # 导出文件夹
-EXPORTD = "NDP48_AUTO"
+EXPORTD = "NDP_AUTO"
 # 共享文件名
 SHARE = ["favicon.ico", "LICENSE", "README.md"]
 
@@ -19,7 +19,12 @@ def addition():
     :return:
     """
     print("====>>>>Customize...")
-    fn = "download.Net48.bat"
+    fn = "download.Net.bat"
+    print("Copy {}...".format(fn))
+    srcf = op.join(".", fn)
+    dstf = op.join(".", EXPORTD, fn)
+    shutil.copyfile(srcf, dstf)
+    fn = "install.Net.bat"
     print("Copy {}...".format(fn))
     srcf = op.join(".", fn)
     dstf = op.join(".", EXPORTD, fn)
