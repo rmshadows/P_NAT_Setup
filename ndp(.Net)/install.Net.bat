@@ -1,4 +1,4 @@
-REM ç”¨äºå®‰è£… .Net ndp48-x86-x64-allos-enu.exe
+REM ÓÃÓÚ°²×° .Net ndp48-x86-x64-allos-enu.exe
 @echo off&color 17
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
@@ -8,7 +8,8 @@ if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
 exit /B
 :UACAdmin
 cd /d "%~dp0"
-::echo å½“å‰è¿è¡Œè·¯å¾„æ˜¯ï¼š%CD%
-echo å·²è·å–ç®¡ç†å‘˜æƒé™ï¼Œå¼€å§‹å®‰è£…ã€‚ã€‚ã€‚
+::echo µ±Ç°ÔËĞĞÂ·¾¶ÊÇ£º%CD%
+echo ÒÑ»ñÈ¡¹ÜÀíÔ±È¨ÏŞ£¬¿ªÊ¼°²×°¡£¡£¡£
 REM ndp462-kb3151800-x86-x64-allos-enu.exe /install /quiet /norestart
 ndp462-kb3151800-x86-x64-allos-enu.exe /install /norestart
+pause

@@ -6,15 +6,11 @@ import sys
 import threading
 import time
 
+import regedit
+
 Windows = os.path.sep == "\\"
 # 提权gsudo
 gsudo = os.path.join("gsudo", "gsudo.exe")
-# 要加入的网络
-net_id = []
-# 安装状态
-Install = False
-# Task线程状态
-Task = False
 
 
 def execCommand(cmd):
@@ -28,45 +24,6 @@ def execCommand(cmd):
     except Exception as e:
         print(e)
     return r
-
-
-def installTightVNC():
-    """
-    安装ZeroTier
-    :return:
-    """
-    if Windows:
-        run = os.system("dir \"C:\Program Files (x86)\ZeroTier\One\ZeroTier One.exe\"")
-    else:
-        if os.geteuid() != 0:
-            print("This program must be run as root. Aborting.")
-            sys.exit(1)
-        run = os.system("zerotier-cli")
-    if run != 0:
-        print("您似乎没有安装ZeroTier(Status code = {}),开始安装".format(run))
-        if Windows:
-            # execCommand("{} msiexec /q /i {}".format(gsudo, os.path.join("res", "zero_tier_one", "zero_tier_one.msi")))
-            ins = cmdThread(
-                "{} msiexec /q /i {}".format(gsudo, os.path.join("res", "zero_tier_one", "zero_tier_one.msi")), True,
-                60)
-            ins.start()
-            ins.join()
-            if not Install:
-                run = os.system("dir \"C:\Program Files (x86)\ZeroTier\One\ZeroTier One.exe\"")
-                if run != 0:
-                    print("安装失败？")
-                    ins = cmdThread(
-                        "{} msiexec /i {}".format(gsudo, os.path.join("res", "zero_tier_one", "zero_tier_one.msi")),
-                        True,
-                        60)
-                    ins.start()
-                    ins.join()
-            time.sleep(1)
-        else:
-            execCommand("curl -s https://install.zerotier.com | sudo bash")
-        print("安装完成，请检查。如有报错请手动安装ZeroTier。")
-    else:
-        print("您似乎已经安装了ZeroTier: C盘下有ZeroTier文件夹(C:\Program Files (x86)\ZeroTier\One) ")
 
 
 def checkWindowsAdmin():
@@ -169,14 +126,6 @@ if __name__ == '__main__':
             # execCommand("{} start cmd.exe /k {} && pause".format(gsudo, name))
             cmdThread("{} start cmd.exe /k {}".format(gsudo, name), False).start()
         sys.exit(0)
-    loadConf()
-    installZeroTier()
-    checkZTStatus()
-    for id in net_id:
-        if checkJoined(id) is False:
-            print("正在加入 {} 网络".format(id))
-            joinNetwork(id)
-            print("操作完成。")
-        else:
-            print("您已经加入了 {} 网络".format(id))
+    # 隐藏TightVNC
+    regedit.hideSoftware("Tight", True, False)
     print("== END ==")

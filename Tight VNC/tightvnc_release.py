@@ -12,7 +12,7 @@ RESD = ["gsudo", "tightvnc"]
 # 导出文件夹
 EXPORTD = "TIGHTVNC_AUTO"
 # 专属文件名
-MAIN = ["TightVNCServer.py"]
+MAIN = ["TightVNC.py"]
 # 共享文件名
 SHARE = ["favicon.ico", "LICENSE", "README.md", "regedit.py"]
 
@@ -23,6 +23,11 @@ def addition():
     :return:
     """
     print("====>>>>Customize...")
+    fn = "InstallTightVNC.bat"
+    print("Copy {}...".format(fn))
+    srcf = op.join(".", fn)
+    dstf = op.join(".", EXPORTD, fn)
+    shutil.copyfile(srcf, dstf)
     fn = "PyinstallerTightVNC.bat"
     print("Copy {}...".format(fn))
     srcf = op.join(".", fn)
