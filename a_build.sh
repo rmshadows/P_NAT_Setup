@@ -21,6 +21,7 @@ cd ZeroTier
 python3 zerotier_release.py
 mv ZEROTIER_AUTO ../RELEASE
 cd ..
+cp b_build.bat ./RELEASE/
 echo ""
 echo ""
 echo "Success."

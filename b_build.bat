@@ -1,5 +1,9 @@
-REM 璇峰厛鍦↙inux杩愯build.sh鍚庯紝鍐嶅湪Windows涓婅繍琛屾鑴氭湰
+REM 请先在Linux运行build.sh后，再在Windows上运行此脚本
 cd RELEASE
+:: frp
+cd FRP_AUTO
+CALL PyinstallerFRP.bat
+cd ..
 :: Tight VNC
 cd TIGHTVNC_AUTO
 CALL PyinstallerTightVNC.bat
@@ -12,6 +16,6 @@ cd ..
 echo ""
 echo ""
 echo "Success."
-
+pause
 
 
