@@ -1,13 +1,13 @@
 # P_NAT_Setup
-我的内网穿透一键部署工具。
+**远程控制一键部署工具。**
 
-使用系统：Windows 10 & Linux 
+使用系统：Windows 10 & Linux (大部分是针对Windows的)
 
 开发目的：让零基础的用户也能通过简单的运行，进行远程连接开发者的电脑
 
 模式：开发者 and 用户远程连接
 
-用户端：需要放在用户端连接
+用户端：需要放在用户端部署
 
 开发端：只需要开发端部署
 
@@ -25,12 +25,12 @@
 
 ### ndp(.Net)
 
-- `download.Net.bat`——用于下载`.Net`版本
-- `install.Net.bat`——用于安装`.Net`版本
+- `download.Net.bat`——用于下载`.Net`版本。用户端。注意：默认下载4.6.2版本。
+- `install.Net.bat`——用于安装`.Net`版本。用户端。注意：默认下载4.6.2版本。
 
 ### Tight VNC
 
-- `TightVNCServer.py`——部署Windows端TightVNC。用户端，配合JRA、Dayon项目。注意：仅限Windows。(未完成)
+- `TightVNCServer.py`——部署Windows端TightVNC。用户端。注意：仅限Windows。
 - `InstallTightVNC.bat`——安装脚本 ([配置参考](https://www.tightvnc.com/doc/win/TightVNC_2.7_for_Windows_Installing_from_MSI_Packages.pdf))
 
 ### ZeroTier
