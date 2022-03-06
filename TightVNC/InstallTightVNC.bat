@@ -66,4 +66,4 @@ echo.
 echo.
 echo FINISHED!
 
-pause
+::pause
