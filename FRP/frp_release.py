@@ -14,7 +14,7 @@ EXPORTD = "FRP_AUTO"
 # 专属文件名
 MAIN = ["frpc.py"]
 # 共享文件名
-SHARE = ["favicon.ico", "LICENSE", "README.md"]
+SHARE = ["favicon.ico", "LICENSE", "README.md", "run_background.vbs"]
 
 
 def addition():

@@ -10,7 +10,7 @@ RESD = ["wget"]
 # 导出文件夹
 EXPORTD = "NDP_AUTO"
 # 共享文件名
-SHARE = ["favicon.ico", "LICENSE", "README.md"]
+SHARE = ["favicon.ico", "LICENSE", "README.md", "run_background.vbs"]
 
 
 def addition():

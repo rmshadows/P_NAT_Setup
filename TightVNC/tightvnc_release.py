@@ -14,7 +14,7 @@ EXPORTD = "TIGHTVNC_AUTO"
 # 专属文件名
 MAIN = ["TightVNC.py"]
 # 共享文件名
-SHARE = ["favicon.ico", "LICENSE", "README.md", "regedit.py"]
+SHARE = ["favicon.ico", "LICENSE", "README.md", "regedit.py", "run_background.vbs"]
 
 
 def addition():

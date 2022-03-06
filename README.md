@@ -43,9 +43,10 @@
 ### Share
 
 - `regedit.py` —— 操作Windows注册表
-- res
+- `res`
   - `gsudo`——Windows提权工具 | [Github](https://github.com/gerardog/gsudo) 要求.Net > 4.0
   - `wget`——[wgetwin-1_5_3_1](http://www.interlog.com/~tcharron/wgetwin-1_5_3_1-binary.zip) from http://www.interlog.com/~tcharron/wgetwin.html
+- `run_background.vbs`——将文件拖放到此VBS上可后台运行
 
 ## 使用方法
 
@@ -53,6 +54,8 @@
 
 ## 更新日志
 
+- 2022.03.06——1.0.6
+  - 添加了后台运行的vbs脚本
 - 2022.03.06——1.0.5
   - 完成了TightVNC部署脚本
 - 2022.03.05——1.0.4

@@ -14,7 +14,7 @@ EXPORTD = "_AUTO"
 # 专属文件名
 MAIN = [".py"]
 # 共享文件名
-SHARE = ["favicon.ico", "LICENSE", "README.md"]
+SHARE = ["favicon.ico", "LICENSE", "README.md", "run_background.vbs"]
 
 
 def addition():

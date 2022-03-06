@@ -10,6 +10,6 @@ exit /B
 cd /d "%~dp0"
 ::echo 当前运行路径是：%CD%
 echo 已获取管理员权限，开始安装。。。
-REM ndp462-kb3151800-x86-x64-allos-enu.exe /install /quiet /norestart
-ndp462-kb3151800-x86-x64-allos-enu.exe /install /norestart
+REM ndp.exe /install /quiet /norestart
+ndp.exe /install /norestart
 pause
