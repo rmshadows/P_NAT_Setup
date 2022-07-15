@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# 安装ZeroTier
+# 隐藏TightVNC
 
 import os
 import sys
