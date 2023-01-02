@@ -1,4 +1,3 @@
-REM ÓÃÓÚ°²×° .Net ndp48-x86-x64-allos-enu.exe
 @echo off&color 17
 if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 bcdedit >nul
@@ -8,7 +7,9 @@ if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
 exit /B
 :UACAdmin
 cd /d "%~dp0"
-::echo µ±Ç°ÔËĞĞÂ·¾¶ÊÇ£º%CD%
-echo ÒÑ»ñÈ¡¹ÜÀíÔ±È¨ÏŞ£¬¿ªÊ¼°²×°¡£¡£¡£
-reg query "HKLM\Software\Microsoft\NET Framework Setup\NDP" /s /v version | findstr /i version | sort /+26 /r
-pause
+::echo å½“å‰è¿è¡Œè·¯å¾„æ˜¯ï¼š%CD%
+echo å·²è·å–ç®¡ç†å‘˜æƒé™ã€‚ã€‚ã€‚
+for /f "delims=" %%i in (pyinstaller.txt) do (
+    pyinstaller -F .\%%i -i .\favicon.ico
+) 
+copy .\dist\* .

@@ -5,20 +5,28 @@ import os
 import sys
 import threading
 import time
+import lib_regedit as regedit
+import lib_loadConf as loadConf
+import lib_System as m_System
 
-import regedit
+
+# Manual
+# 配置文件名称前缀 (zerotier.conf 或者 zerotier.eonf)
+CONF_PREFIX = "zerotier"
+ZEROTIER_PATH = os.path.join("res", "ZeroTierOne", "ZeroTierOne.msi")
+
 
 Windows = os.path.sep == "\\"
 # 提权gsudo
-gsudo = os.path.join("res", "gsudo", "gsudo.exe")
+gsudo = os.path.join("gsudo", "gsudo.exe")
 # 要加入的网络
-net_id = []
+NET_ID = []
+# 是否隐藏
+HIDE_APP = -1
 # 安装状态
 Install = False
 # Task线程状态
 Task = False
-# 是否隐藏
-hide = -1
 
 
 def execCommand(cmd):
@@ -34,35 +42,27 @@ def execCommand(cmd):
     return r
 
 
-def loadConf():
+def getConf():
     """
     加载配置文件
     :return:
     """
-    global net_id
-    global hide
-    with open(os.path.join("conf", "zero_tier.conf"), "r", encoding="utf-8") as f:
-        for line in f.readlines():
-            if line[0:1] == "#":
-                # 去掉注释
-                pass
-            else:
-                line = line.replace("\r\n", "").replace("\n", "")
-                if line.split("=")[0] == "id":
-                    if line.split("=")[1] == "":
-                        print("配置文件有误: id")
-                        sys.exit(1)
-                    else:
-                        net_id.append(line.split("=")[1])
-                elif line.split("=")[0] == "hide":
-                    if line.split("=")[1] == "":
-                        print("配置文件有误: hide")
-                        sys.exit(1)
-                    else:
-                        hide=int(line.split("=")[1])
-                else:
-                    pass
+    global NET_ID
+    global HIDE_APP
+    conf_dic = {}
 
+    if loadConf.clearMode():
+        conf_dic = loadConf.readClearConf(os.path.join("conf", "{}.conf".format(CONF_PREFIX)))
+    else:
+        conf_dic = loadConf.readEncrytedConf(os.path.join("conf", "{}.eonf".format(CONF_PREFIX)))
+    # print(conf_dic)
+    for i in conf_dic:
+        if i == "id":
+            NET_ID = conf_dic[i].split(";")
+        elif i == "hide":
+            HIDE_APP = conf_dic[i]
+    # print(NET_ID, HIDE_APP)
+    
 
 def installZeroTier():
     """
@@ -81,7 +81,7 @@ def installZeroTier():
         if Windows:
             # execCommand("{} msiexec /q /i {}".format(gsudo, os.path.join("res", "zero_tier_one", "zero_tier_one.msi")))
             ins = cmdThread(
-                "{} msiexec /q /i {}".format(gsudo, os.path.join("res", "zero_tier_one", "zero_tier_one.msi")), True,
+                "{} msiexec /q /i {}".format(gsudo, ZEROTIER_PATH), True,
                 60)
             ins.start()
             ins.join()
@@ -90,7 +90,7 @@ def installZeroTier():
                 if run != 0:
                     print("安装失败？")
                     ins = cmdThread(
-                        "{} msiexec /i {}".format(gsudo, os.path.join("res", "zero_tier_one", "zero_tier_one.msi")),
+                        "{} msiexec /i {}".format(gsudo, ZEROTIER_PATH),
                         True,
                         60)
                     ins.start()
@@ -184,20 +184,6 @@ def checkJoined(id):
         return False
 
 
-def checkWindowsAdmin():
-    """
-    检查管理权限
-    :return:
-    """
-    admin = execCommand("whoami /groups | find \"S-1-16-12288\" && echo YES_ADMIN")
-    # print(admin)
-    if "YES_ADMIN" in admin:
-        return True
-    else:
-        print("Please run as administrator.")
-        return False
-
-
 class taskThread(threading.Thread):
     """
     执行cmd命令
@@ -272,7 +258,7 @@ class cmdThread(threading.Thread):
 
 if __name__ == '__main__':
     print("== START ==")
-    if Windows and not checkWindowsAdmin():
+    if Windows and not m_System.checkAdministrator():
         name = sys.executable
         print("名称：" + name)
         if "python" in name:
@@ -284,10 +270,10 @@ if __name__ == '__main__':
             # execCommand("{} start cmd.exe /k {} && pause".format(gsudo, name))
             cmdThread("{} start cmd.exe /k {}".format(gsudo, name), False).start()
         sys.exit(0)
-    loadConf()
+    getConf()
     installZeroTier()
     checkZTStatus()
-    for id in net_id:
+    for id in NET_ID:
         if checkJoined(id) is False:
             print("正在加入 {} 网络".format(id))
             joinNetwork(id)
@@ -295,6 +281,6 @@ if __name__ == '__main__':
         else:
             print("您已经加入了 {} 网络".format(id))
     # 隐藏
-    if hide == 1:
+    if HIDE_APP == 1:
         regedit.hideSoftware("ZeroTier", False, False)
     print("== END ==")

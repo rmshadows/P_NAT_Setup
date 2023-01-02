@@ -6,7 +6,8 @@ import sys
 import threading
 import time
 
-import regedit
+import lib_System as m_System
+import lib_regedit as regedit
 
 Windows = os.path.sep == "\\"
 # 提权gsudo
@@ -24,20 +25,6 @@ def execCommand(cmd):
     except Exception as e:
         print(e)
     return r
-
-
-def checkWindowsAdmin():
-    """
-    检查管理权限
-    :return:
-    """
-    admin = execCommand("whoami /groups | find \"S-1-16-12288\" && echo YES_ADMIN")
-    # print(admin)
-    if "YES_ADMIN" in admin:
-        return True
-    else:
-        print("Please run as administrator.")
-        return False
 
 
 class taskThread(threading.Thread):
@@ -114,7 +101,7 @@ class cmdThread(threading.Thread):
 
 if __name__ == '__main__':
     print("== START ==")
-    if Windows and not checkWindowsAdmin():
+    if Windows and not m_System.checkAdministrator():
         name = sys.executable
         print("名称：" + name)
         if "python" in name:

@@ -9,4 +9,4 @@ exit /B
 cd /d "%~dp0"
 ::echo 当前运行路径是：%CD%
 echo 已获取管理员权限，开始安装。。。
-msiexec /i "ZeroTierOne.msi"
+msiexec /i ".\res\ZeroTierOne\ZeroTierOne.msi"
