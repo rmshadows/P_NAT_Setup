@@ -4,6 +4,7 @@
 """
 import multiprocessing
 import os
+import shutil
 
 IS_WINDOWS = os.sep == "\\"
 
@@ -111,6 +112,120 @@ def removeBom(filepath):
             print(fbody)
             with open(filepath, 'wb') as f:
                 f.write(fbody)
+
+
+def fdExisted(file_or_dir, expect=0):
+    """
+    判断文件、目录是否以期待的方式存在
+    Args:
+        file_or_dir: 路径
+        expect: 期待的类型 (0:不做约束 1:文件 2:文件夹)
+    Returns:
+        不符合期待类型也会返回 False
+    """
+    if expect not in [0, 1, 2]:
+        print("期待值不在0-无限制，1-文件，2-文件夹之间")
+        return False
+    if expect in [1, 2]:
+        if not os.path.exists(file_or_dir):
+            # 文件不存在直接返回False
+            return False
+        else:
+            if fileOrDirectory(file_or_dir) != expect:
+                return False
+        return True
+    else:
+        return os.path.exists(file_or_dir)
+
+
+def fileOrDirectory(file_or_dir):
+    """
+    判断文件还是目录
+    Args:
+        file_or_dir: 路径
+
+    Returns:
+        -1:other (可能不存在)
+        1:file
+        2:dir
+    """
+    if os.path.isfile(file_or_dir):
+        return 1
+    elif os.path.isdir(file_or_dir):
+        return 2
+    else:
+        return -1
+
+
+def rmFD(file_or_dir, expect=0):
+    """
+    删除文件
+    Args:
+        file_or_dir: 路径
+        expect: 期待类型： 1:文件 2:文件夹
+
+    Returns:
+        成功否
+    """
+    if expect not in [0, 1, 2]:
+        print("期待值不在0-无限制，1-文件，2-文件夹之间")
+        return False
+    if not fdExisted(file_or_dir, expect):
+        print("文件或文件夹不存在/与期待类型不符合：{}".format(file_or_dir))
+        return False
+    ftpye = fileOrDirectory(file_or_dir)
+    if ftpye == 1:
+        print("删除文件：{}".format(file_or_dir))
+        os.remove(file_or_dir)
+    elif ftpye == 2:
+        print("删除文件夹：{}".format(file_or_dir))
+        shutil.rmtree(file_or_dir)
+    else:
+        return False
+    return True
+
+
+def copyFD(src, dst):
+    """
+    复制文件或者文件夹
+    Args:
+        src:
+        dst:
+
+    Returns:
+
+    """
+    if not fdExisted(src):
+        print("文件或文件夹不存在：{}".format(src))
+        return False
+    ftpye = fileOrDirectory(src)
+    if ftpye == 1:
+        print("复制文件 {} 到 {}".format(src, dst))
+        shutil.copy(src, dst)
+    elif ftpye == 2:
+        print("复制文件夹 {} 到 {}".format(src, dst))
+        shutil.copytree(src, dst)
+    else:
+        return False
+    return True
+
+
+def moveFD(src, dst):
+    """
+    移动文件或者文件夹
+    Args:
+        src:
+        dst:
+
+    Returns:
+
+    """
+    if not fdExisted(src):
+        print("文件或文件夹不存在：{}".format(src))
+        return False
+    print("移动 {} 到 {}".format(src, dst))
+    shutil.move(src, dst)
+    return True
 
 
 def averageSplitList(list2split:list, n:int):
