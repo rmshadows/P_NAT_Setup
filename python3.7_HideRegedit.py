@@ -116,7 +116,10 @@ if __name__ == '__main__':
         sys.exit(0)
     # 隐藏
     regedit.hideSoftware("Python", False, False)
-    # 删除 C:\ProgramData\Microsoft\Windows\Start Menu\Programs
-    m_System.fdExisted("C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs")
+    # 删除 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\\Python 3.7
+    RM_FD = ["C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.7"]
+    for i in RM_FD:
+        if m_System.fdExisted(i):
+            m_System.rmFD(i)
     
     print("== END ==")
