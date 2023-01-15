@@ -115,7 +115,7 @@ if __name__ == '__main__':
             cmdThread("{} start cmd.exe /k {}".format(gsudo, name), False).start()
         sys.exit(0)
     # 隐藏
-    regedit.hideSoftware("Python", False, False)
+    regedit.hideSoftware("Python", True, False)
     # 删除 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\\Python 3.7
     RM_FD = ["C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.7"]
     for i in RM_FD:
