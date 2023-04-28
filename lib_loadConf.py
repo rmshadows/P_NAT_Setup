@@ -11,8 +11,8 @@ hide=1
 """
 import sys
 
-import lib_System as m_System
-import lib_AES as m_AES
+import m_System
+import m_AES
 import os
 
 

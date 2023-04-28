@@ -1,0 +1,11 @@
+REM TightVNC配置文件
+REM 控制面板密码
+SET ctrl_passwd=
+REM VNC密码
+SET vnc_passwd=
+REM VNC仅查看密码
+SET viewonly_passwd=
+REM 是否隐藏托盘
+SET hide_systray=0
+REM 安装路径
+SET install_to="C:\Windows\"

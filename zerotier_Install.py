@@ -5,9 +5,9 @@ import os
 import sys
 import threading
 import time
-import lib_regedit as regedit
+import m_Winreg as regedit
 import lib_loadConf as loadConf
-import lib_System as m_System
+import m_System
 
 
 # Manual

@@ -12,13 +12,6 @@ CHARACTER = "UTF-8"
 
 
 class AES_CFB:
-    # 密钥
-    CFB_KEY = None
-    # 密码长度
-    CFB_KEY_LEN = 32
-    # 偏移量
-    CFB_IV = None
-
     def padding(self, pwd, leng):
         """
         填充到指定位数
@@ -103,19 +96,15 @@ class AES_CFB:
 
     def __init__(self, passwd, iv="", key_len=32):
         # 以下是有顺序的
+        # 密码长度
         self.CFB_KEY_LEN = key_len
+        # 密钥
         self.CFB_KEY = self.padding(passwd, self.CFB_KEY_LEN)
+        # 偏移量
         self.CFB_IV = self.padding(iv, 16)
 
 
 class AES_CBC:
-    # 密钥
-    CBC_KEY = None
-    # 密码长度
-    CBC_KEY_LEN = 16
-    # 偏移量
-    CBC_IV = None
-
     def padding(self, pwd, leng):
         """
         填充到指定位数
@@ -201,8 +190,11 @@ class AES_CBC:
 
     def __init__(self, passwd, iv="", key_len=16):
         # 以下是有顺序的
+        # 密钥长度
         self.CBC_KEY_LEN = key_len
+        # 密钥
         self.CBC_KEY = self.padding(passwd, self.CBC_KEY_LEN)
+        # 偏移量
         self.CBC_IV = self.padding(iv, 16)
 
 

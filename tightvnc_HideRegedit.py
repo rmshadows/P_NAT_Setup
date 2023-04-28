@@ -6,8 +6,8 @@ import sys
 import threading
 import time
 
-import lib_System as m_System
-import lib_regedit as regedit
+import m_System
+import m_Winreg as regedit
 
 Windows = os.path.sep == "\\"
 # 提权gsudo
@@ -114,5 +114,9 @@ if __name__ == '__main__':
             cmdThread("{} start cmd.exe /k {}".format(gsudo, name), False).start()
         sys.exit(0)
     # 隐藏TightVNC
-    regedit.hideSoftware("Tight", True, False)
+    try:
+        regedit.hideSoftware("Tight", True, False)
+        regedit.hideSoftware("Tight", False, False)
+    except Exception as e:
+        print(e)
     print("== END ==")
