@@ -426,12 +426,13 @@ def getSubkey(key, mode=0):
     return subKey
 
 
-def hideSoftware(name, is64Bit=True, accurate=True):
+def hideSoftware(name, is64Bit=True, accurate=True, hide = True):
     """
     to hide a software from regedit, 添加Dword SystemComponent 1
     name: 软件的DisplayName
     is64Bit: 是否是64位
     accurate: 是否精准匹配，否的话只要名称含有某字段就执行
+    hide: 是否隐藏
     :return: 是否找到该应用(并非是否执行成功！)
     https://blog.csdn.net/wybshyy/article/details/52064296
     """
@@ -467,7 +468,10 @@ def hideSoftware(name, is64Bit=True, accurate=True):
                 result = True
                 # 检查是否有SystemComponent
                 try:
-                    createValue(sub_key, r"SystemComponent", winreg.REG_DWORD, 1)
+                    if hide:
+                        createValue(sub_key, r"SystemComponent", winreg.REG_DWORD, 1)
+                    else:
+                        createValue(sub_key, r"SystemComponent", winreg.REG_DWORD, 0)
                     # winreg.SetValueEx(regr, "SystemComponent", 0, winreg.REG_DWORD, 1)
                 except Exception as e:
                     print(e)
@@ -499,7 +503,10 @@ def hideSoftware(name, is64Bit=True, accurate=True):
             if found:
                 result = True
                 try:
-                    createValue(sub_key, r"SystemComponent", winreg.REG_DWORD, 1)
+                    if hide:
+                        createValue(sub_key, r"SystemComponent", winreg.REG_DWORD, 1)
+                    else:
+                        createValue(sub_key, r"SystemComponent", winreg.REG_DWORD, 0)
                 except Exception as e:
                     print(e)
                 print("Software Found: "+i)

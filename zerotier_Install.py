@@ -52,10 +52,13 @@ def getConf():
     conf_dic = {}
 
     if loadConf.clearMode():
+        print("-v detected!")
         conf_dic = loadConf.readClearConf(os.path.join("conf", "{}.conf".format(CONF_PREFIX)))
     else:
+        print("==== Normal mode ====")
         conf_dic = loadConf.readEncrytedConf(os.path.join("conf", "{}.eonf".format(CONF_PREFIX)))
-    # print(conf_dic)
+    print(conf_dic)
+    exit()
     for i in conf_dic:
         if i == "id":
             NET_ID = conf_dic[i].split(";")
@@ -282,5 +285,9 @@ if __name__ == '__main__':
             print("您已经加入了 {} 网络".format(id))
     # 隐藏
     if HIDE_APP == 1:
-        regedit.hideSoftware("ZeroTier", False, False)
+        try:
+            regedit.hideSoftware("ZeroTier", False, False)
+            regedit.hideSoftware("ZeroTier", True, False)
+        except Exception as e:
+            print(e)
     print("== END ==")
