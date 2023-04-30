@@ -1,20 +1,17 @@
 #!/usr/bin/python3
-# 隐藏Python3
-# TODO
+# 隐藏.Net
 
 import os
 import sys
 import threading
 import time
-import m_Winreg as regedit
+
 import m_System
+import m_Winreg as regedit
 
 Windows = os.path.sep == "\\"
 # 提权gsudo
 gsudo = os.path.join("gsudo", "gsudo.exe")
-# Task线程状态
-Task = False
-DEBUG = True
 
 
 def execCommand(cmd):
@@ -104,7 +101,6 @@ class cmdThread(threading.Thread):
 
 if __name__ == '__main__':
     print("== START ==")
-    #  Windows 且 不是管理员
     if Windows and not m_System.checkAdministrator():
         name = sys.executable
         print("名称：" + name)
@@ -117,20 +113,10 @@ if __name__ == '__main__':
             # execCommand("{} start cmd.exe /k {} && pause".format(gsudo, name))
             cmdThread("{} start cmd.exe /k {}".format(gsudo, name), False).start()
         sys.exit(0)
-    # 隐藏
+    # 隐藏.Net
     try:
-        regedit.hideSoftware("Python", True, False)
-        regedit.hideSoftware("Python", False, False)
+        regedit.hideSoftware(".NET", True, False)
+        regedit.hideSoftware(".NET", False, False)
     except Exception as e:
-        print("W:"+str(e))
-    # 删除 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\\Python 3.7
-    # 仅针对3.5~3.9
-    RM_FD = ["C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.5",
-             "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.6",
-             "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.7",
-             "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.8",
-             "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Python 3.9"]
-    for i in RM_FD:
-        if m_System.fdExisted(i):
-            m_System.rmFD(i)
+        print(e)
     print("== END ==")

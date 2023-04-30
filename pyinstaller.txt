@@ -1,2 +1,2 @@
-tightvnc.py
-zerotier.py
+tightvnc_HideRegedit.py
+zerotier_Install.py
