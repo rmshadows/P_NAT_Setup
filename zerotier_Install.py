@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 import m_Winreg as regedit
-import lib_loadConf as loadConf
+import m_loadConf as loadConf
 import m_System
 
 

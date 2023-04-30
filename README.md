@@ -23,7 +23,7 @@
 
 - `xxxxx_requirement.txt`——需要的文件清单
 - `tool_xxxxxx`——工具，无需在客户端部署的东西
-- `lib_xxxxx`——Python依赖
+- `m_xxxxx`——Python依赖
 - `func_xxxx`——功能性脚本
 
 ### FRP
@@ -32,11 +32,24 @@
 
 ### ndp(.Net)
 
-- `download.Net.bat`——用于下载`.Net`版本。用户端。注意：默认下载4.6.2版本。
-- `install.Net.bat`——用于安装`.Net`版本。用户端。注意：默认下载4.6.2版本。而且，有时能用有时不能用，原因未知，随缘安装。
-- `check.NetVersion.bat`——用于检查`.Net`版本。用户端。
+>wget
+
+- `ndp_Download.bat`——用于下载`.Net`版本。用户端。注意：默认下载4.6.2版本。
+- `ndp_Install.bat`——用于安装`.Net`版本。用户端。注意：默认下载4.6.2版本。而且，有时能用有时不能用，原因未知，随缘安装。
+- `ndp_CheckVersion.bat`——用于检查`.Net`版本。用户端。
+- `ndp_HideRegedit.py`——隐藏注册表
+
+### Python
+
+>gsudo
+
+- `python3.7_HideRegedit.py`——隐藏Python
 
 ### Tight VNC
+
+>gsudo
+>res
+>conf
 
 - `tightvnc_Install.bat`——安装脚本 ([配置参考](https://www.tightvnc.com/doc/win/TightVNC_2.7_for_Windows_Installing_from_MSI_Packages.pdf))
 - `tightvnc_HideRegedit.py`——注册表隐藏Windows端TightVNC。用户端。注意：仅限Windows。
@@ -44,6 +57,10 @@
 ### ZeroTier
 
 >Required .Net > 4.5
+>
+>gsudo
+>res
+>conf
 >
 >支持配置文件加密
 
@@ -59,9 +76,10 @@
 
 ### Tool
 
-- `tool_decrypt_conf.py`——加密配置文件
-- `tool_encrypt_conf.py`——加密配置文件
+- `tool_decrypt_conf.py`——加密配置文件{脚本 【配置文件】}
+- `tool_encrypt_conf.py`——加密配置文件{脚本 【配置文件】}
 - `tool_Pyinstaller.bat`——用于Windows客户端的Pyinstaller打包脚本，需要`pyinstaller.txt`文件
+- `tool_unhideSoftware.py`——取消隐藏入软件{脚本 【软件名1】 【软件名2】 ...}
 
 ### Libs
 
@@ -80,6 +98,9 @@
 
 ## 更新日志
 
+- 2023.05.01——1.1.0
+  - 优化了TightVNC脚本内容
+  - 添加了`tool_unhideSoftware.py`
 - 2023.01.02——1.0.9
   - 取消原有的目录结构
   - 新增配置文件加密功能(仅部分)

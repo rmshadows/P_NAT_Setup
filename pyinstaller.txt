@@ -1,2 +1,7 @@
 tightvnc_HideRegedit.py
 zerotier_Install.py
+tool_encrypt_conf.py
+tool_encrypt_conf.py
+python3.7_HideRegedit.py
+ndp_HideRegedit.py
+tool_unhideSoftware.py
