@@ -1,0 +1,3 @@
+# pip 依赖（一行一个）。优先用 apt 的 python3-pycryptodome；此处作兜底。
+pycryptodome
+python-xlib

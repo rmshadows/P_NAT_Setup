@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="application.App" />
+    <module name="JRA_Client" />
+    <option name="VM_PARAMETERS" value="--enable-native-access=javafx.graphics" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

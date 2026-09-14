@@ -1,0 +1,6 @@
+# Linux 帮助者包：与小白包同一套 conf/res，只是 app.conf 里 role=assistant
+JavaRemoteAssistant/dist/JavaRemoteAssistant/
+deploy/dayon/
+lib/
+conf/app.conf
+res/linux/Dayon/

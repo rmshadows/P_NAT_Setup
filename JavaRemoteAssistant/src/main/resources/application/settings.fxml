@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="false" styleClass="app-root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SettingsController">
+   <content>
+      <VBox alignment="TOP_CENTER" prefWidth="240.0" spacing="8.0" styleClass="app-root">
+         <children>
+            <Label styleClass="help-title" text="JRA设置" />
+            <Label styleClass="hint" text="引擎与部署参数：主界面「加载远程桌面」右侧箭头选方式，右击打开高级设置。" wrapText="true" />
+            <Button fx:id="linuxDepsBtn" managed="false" maxWidth="Infinity" minHeight="34.0" onAction="#openLinuxDeps" text="Linux 依赖…" visible="false" />
+
+            <Label styleClass="section" text="运行模式" />
+            <CheckBox fx:id="dryRun" maxWidth="Infinity" text="体验版（界面全真，不装不启进程）" wrapText="true" />
+            <Label styleClass="hint" text="勾选后回主界面即进入体验：按钮、状态、AHK 显隐都按模拟平台走" wrapText="true" />
+            <Label styleClass="section" text="模拟平台" />
+            <ComboBox fx:id="simulateOs" maxWidth="Infinity" />
+
+            <CheckBox fx:id="tray" maxWidth="Infinity" text="系统托盘（点击显示主界面）" wrapText="true" />
+            <CheckBox fx:id="closeExit" maxWidth="Infinity" text="关闭窗口时退出（不勾选则缩到托盘）" wrapText="true" />
+            <Label styleClass="hint" text="默认点打叉缩到托盘；勾选后打叉直接退出，会记住" wrapText="true" />
+
+            <Label fx:id="shellEnvSection" styleClass="section" text="Linux Python" />
+            <CheckBox fx:id="useShellEnv" maxWidth="Infinity" text="使用终端环境" wrapText="true" />
+            <Label fx:id="useShellEnvHint" styleClass="hint" wrapText="true" text="勾选后 source 下面选的文件再找 python3，能进终端里的 venv。默认自动推荐（当前 SHELL 的 rc，或家目录常见 activate）。也可自选。保存后生效。" />
+            <ComboBox fx:id="shellSource" maxWidth="Infinity" />
+            <Button fx:id="pickShellSource" maxWidth="Infinity" minHeight="34.0" onAction="#pickShellSource" text="选择要 source 的文件…" />
+
+            <Label styleClass="section" text="AHK（默认 res/windows/AHK）" />
+            <Label fx:id="ahkDirLabel" styleClass="hint" text="" wrapText="true" />
+            <Button fx:id="pickAhkDir" maxWidth="Infinity" minHeight="34.0" onAction="#pickAhkDir" text="更换 AHK 脚本文件夹…" />
+            <Button fx:id="preview" maxWidth="Infinity" minHeight="34.0" onAction="#preview" text="开发者：控制台预演文案" />
+            <Button fx:id="previewAdv" maxWidth="Infinity" minHeight="34.0" onAction="#previewAdvanced" text="开发者：高级预演文案" />
+            <TextArea fx:id="previewOut" editable="false" prefHeight="100.0" wrapText="true" />
+            <Button fx:id="save" maxWidth="Infinity" minHeight="34.0" onAction="#save" styleClass="btn-primary" text="保存并返回主界面" />
+            <Button fx:id="back" maxWidth="Infinity" minHeight="34.0" onAction="#back" text="返回（不保存）" />
+         </children>
+         <padding>
+            <Insets bottom="12.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

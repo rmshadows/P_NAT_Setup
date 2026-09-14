@@ -1,0 +1,1 @@
+MButton & WheelDown::MsgBox "You turned the mouse wheel down while holding down the middle button."

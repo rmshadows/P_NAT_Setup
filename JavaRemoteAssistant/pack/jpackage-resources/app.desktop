@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=@APP_NAME@
+Comment=@APP_DESCRIPTION@
+Exec=/opt/@APP_NAME@/bin/@APP_NAME@
+Icon=/opt/@APP_NAME@/lib/@APP_NAME@.png
+Terminal=false
+Type=Application
+Categories=@MENU_GROUP@;
+StartupWMClass=@APP_NAME@
+StartupNotify=true
+MimeType=

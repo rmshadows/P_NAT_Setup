@@ -1,0 +1,2 @@
+# cmd 在仅 LF 的 .bat 里，第二次 call :标签 常失败
+*.bat text eol=crlf

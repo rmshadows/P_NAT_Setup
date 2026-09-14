@@ -1,0 +1,5 @@
+conf/app.conf
+# Linux VNC :0（当前屏）
+# 推荐：sudo apt install x11vnc
+# 备选：sudo apt install tigervnc-scraping-server
+# 也可在 JRA「Linux 依赖」勾选

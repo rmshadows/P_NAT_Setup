@@ -1,0 +1,40 @@
+# 通用 Java 应用打包配置。复制为 app.conf，或直接跑 init-app-conf.sh 生成。
+# 等号两边不要空格。路径相对项目根（本文件夹的上一级）。
+
+# ========== 必填（三项）==========
+# 缺一不可；留空时打包脚本会尝试从 pom / 源码自动补。
+APP_NAME=MyApp
+MAIN_CLASS=com.example.Main
+MAVEN_JAR=target/myapp.jar
+
+# ========== 版本（三选一，靠前优先）==========
+# 1) 写死
+VERSION=
+# 2) 从 Java 源码读 VERSION = "x.y"
+VERSION_JAVA=
+# 3) 都留空：读 pom.xml 项目 <version>
+
+# ========== 可选（留空有默认 / 可自动探测）==========
+VENDOR=
+APP_DESCRIPTION=
+LINUX_PKG_NAME=
+
+# 图标（没有文件就用 jpackage 默认 Java 图标）
+# Windows 必须用真正的 .ico；PNG 改后缀不够，jpackage 会直接失败
+ICON_PNG=other/icon.png
+ICON_ICO=other/icon.ico
+ICON_ICNS=other/icon.icns
+
+# jpackage --add-modules
+# Swing 默认够用。检测到 org.openjfx / module-info 里的 javafx.* 时会自动加上。
+# 也可手写：...,javafx.base,javafx.graphics,javafx.controls,javafx.fxml
+JP_MODULES=java.base,java.desktop,java.datatransfer,java.prefs,jdk.charsets
+
+# 本地 JavaFX jmods / 模块 JAR。空则从 Maven org.openjfx 依赖复制
+JAVAFX_JMODS=
+
+# 传给 mvn package；检测到 pom 有 all-natives profile 时会自动填 -P all-natives
+MAVEN_EXTRA_ARGS=
+
+JAVA_OPTIONS=-Dfile.encoding=UTF-8
+MENU_GROUP=Utility

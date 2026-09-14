@@ -1,0 +1,10 @@
+# Linux 本机辅助 / Dayon 常用 apt 包（一行一个，# 注释）
+# 由 init/install.py 与 deploy/host-assist/install.py 读取
+
+onboard
+xdotool
+wmctrl
+python3-xlib
+python3-pycryptodome
+gnome-system-monitor
+x11vnc

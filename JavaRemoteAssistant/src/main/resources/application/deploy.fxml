@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="false" prefHeight="420.0" prefWidth="360.0" styleClass="app-root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DeploySettingsController">
+   <content>
+      <VBox spacing="8.0" styleClass="app-root">
+         <children>
+            <Label styleClass="help-title" text="高级设置" />
+            <Label fx:id="engineHint" styleClass="hint" wrapText="true" />
+            <Label styleClass="hint" text="保存后主界面「加载」共用这份 conf。不自动重新加载。" wrapText="true" />
+
+            <VBox fx:id="roleProps" managed="false" spacing="6.0" visible="false">
+               <children>
+                  <Label styleClass="hint" text="角色（仅 Dayon：两套程序）" />
+                  <ComboBox fx:id="role" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="受助端=被帮的人连出；协助端=帮助者等待接入。VNC 没有这一分。" wrapText="true" />
+               </children>
+            </VBox>
+
+            <VBox fx:id="connectProps" spacing="6.0">
+               <children>
+                  <Label fx:id="hostHint" styleClass="hint" text="协助端地址" wrapText="true" />
+                  <HBox spacing="6.0">
+                     <children>
+                        <TextField fx:id="host" maxWidth="Infinity" promptText="host" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="port" prefWidth="72.0" promptText="port" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <VBox fx:id="commonProps" spacing="6.0">
+               <children>
+                  <Label styleClass="hint" text="多显示器" />
+                  <ComboBox fx:id="monitor" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="选屏，不做虚拟二屏；引擎支持时生效" wrapText="true" />
+               </children>
+            </VBox>
+
+            <VBox fx:id="dayonProps" managed="false" spacing="6.0" visible="false">
+               <children>
+                  <CheckBox fx:id="autoAccept" maxWidth="Infinity" text="Dayon 自动接受连接（auto_accept）" wrapText="true" />
+                  <Label styleClass="hint" text="走 deploy/dayon/install.py，读写 conf/app.conf。" wrapText="true" />
+               </children>
+            </VBox>
+
+            <VBox fx:id="tightvncProps" managed="false" spacing="6.0" visible="false">
+               <children>
+                  <Label styleClass="hint" text="TightVNC 部署方式" />
+                  <ComboBox fx:id="tightvncMode" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="portable=左键便携加载；service=高级部署装系统服务" wrapText="true" />
+                  <Label styleClass="hint" text="控制面板密码" />
+                  <PasswordField fx:id="ctrlPasswd" maxWidth="Infinity" promptText="ctrl_passwd" />
+                  <Label styleClass="hint" text="VNC 密码" />
+                  <PasswordField fx:id="vncPasswd" maxWidth="Infinity" promptText="vnc_passwd" />
+                  <Label styleClass="hint" text="仅查看密码" />
+                  <PasswordField fx:id="viewonlyPasswd" maxWidth="Infinity" promptText="viewonly_passwd" />
+                  <CheckBox fx:id="hideSystray" text="隐藏 TightVNC 托盘" />
+                  <Label styleClass="hint" text="安装路径（service）" />
+                  <TextField fx:id="installTo" maxWidth="Infinity" promptText="C:\Windows\" />
+                  <Label styleClass="hint" text="密码/托盘/路径写入 conf/tightvnc.conf。" wrapText="true" />
+               </children>
+            </VBox>
+
+            <VBox fx:id="linuxVncProps" managed="false" spacing="6.0" visible="false">
+               <children>
+                  <Label styleClass="hint" text="显示编号" />
+                  <ComboBox fx:id="vncDisplay" editable="true" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="本轮只做 :0 当前屏幕。:1 起虚拟桌面稍后。" wrapText="true" />
+                  <Label styleClass="hint" text="连接方式" />
+                  <ComboBox fx:id="vncConnect" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="反向：本机 Server 连出，协助端 Viewer 先开监听。等待：协助端来连本机 :5900。反向需要 x11vnc。" wrapText="true" />
+                  <Label styleClass="hint" text="VNC 实现" />
+                  <ComboBox fx:id="vncImpl" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="自动=有 x11vnc 就用它。TigerVNC 的 x0vncserver 只能「等待连入」。" wrapText="true" />
+                  <Label styleClass="hint" text="传输" />
+                  <ComboBox fx:id="vncEncrypt" maxWidth="Infinity" />
+                  <Label styleClass="hint" text="不加密：TightVNC Viewer 能连。加密 TLS：协助端要用支持 TLS 的 Viewer（如 TigerVNC），TightVNC 往往连不上。" wrapText="true" />
+                  <Label styleClass="hint" text="VNC 密码（可空）" />
+                  <PasswordField fx:id="linuxVncPasswd" maxWidth="Infinity" promptText="空=不设密码" />
+                  <Label styleClass="hint" text="走 deploy/vnc/install.py，读写 conf/app.conf。需要 apt 包 x11vnc。" wrapText="true" />
+               </children>
+            </VBox>
+
+            <VBox fx:id="rdpProps" managed="false" spacing="6.0" visible="false">
+               <children>
+                  <Label styleClass="hint" text="RDP 仅 Windows 占位。Linux 已去掉这一项。" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

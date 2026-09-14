@@ -1,0 +1,6 @@
+# 本机辅助（JRA 按键 / 屏幕键盘 / 热键抓取）依赖清单
+# 实际安装：python3 init/install.py  或  python3 deploy/host-assist/install.py
+
+init/requirements-apt.txt
+init/requirements-pip.txt
+tool/capture_hotkey.py

@@ -1,0 +1,6 @@
+res/linux/Dayon/dayon.sh
+conf/app.conf
+# 本机辅助 apt/pip（屏幕键盘/xdotool/热键抓取）见：
+init/requirements-apt.txt
+init/requirements-pip.txt
+deploy/host-assist/

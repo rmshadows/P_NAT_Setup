@@ -1,0 +1,7 @@
+# Linux 小白包：一份 conf、一份 res，GUI 与 CLI 共用（不要再拷进 JavaRemoteAssistant/）
+JavaRemoteAssistant/dist/JavaRemoteAssistant/
+deploy/dayon/
+deploy/vnc/
+lib/
+conf/app.conf
+res/linux/Dayon/

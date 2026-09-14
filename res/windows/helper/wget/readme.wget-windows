@@ -1,0 +1,33 @@
+WGET/Windows 1.5.3.1
+
+This compile was created on July 1, 1999.  The executable
+will run on all Windows 95 and Window NT machines.
+
+It was created from the wget version 1.5.3 source bundle.
+You will need to find the tarball wget-1.5.3.tar.gz if you
+want to compile this code.  The files in this zip are the
+ones that have been changed for the windows compile.
+
+Source is in the tar.gz file.  All known windows related source
+changes had been merged into the base code when wget 1.5.3 was
+released.  This version has one change that allows retrieval
+of URLs with '?' or '*' in their name (those characters are
+replaced by the '@' character).
+   
+   NOTE: This is relatively untested, and some other
+   functionality may have been broken with the addition of
+   this capability.  Any such 'damage' will not affect wget's
+   operation for URLs that do not contain these two characters.
+ 
+For compiling with watcom, the config.h.watcom file is needed
+(mistakenly excluded from the main distribution). The
+Makefile.watcom in the ZIP is slightly different from the one
+included in the tar.gz file.  The url.c/url.h and version.c
+files include changes required from the 1.5.3 source bundle
+
+The windows compiled port is available at
+        http://www.interlog.com/~tcharron/wgetwin.html
+
+-- Tim
+tcharron@interlog.com
+

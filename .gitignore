@@ -1,3 +1,7 @@
+# P_NAT_SETUP isolated runtimes (Dayon etc.) — keep/uninstall only touches here
+.runtime/
+FRP_AUTO/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

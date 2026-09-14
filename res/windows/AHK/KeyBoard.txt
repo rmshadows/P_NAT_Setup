@@ -1,0 +1,125 @@
+Key 名称
+下表中列出了可以发送的特殊按键(每个按键名称必须用大括号括起来):
+
+ 	 
+{F1} - {F24}	功能键. 例如: {F12} 表示 F12.
+{!}	!
+{#}	#
+{+}	+
+{^}	^
+{{}	{
+{}}	}
+{Enter}	主键盘上的 Enter 键
+{Escape} 或 {Esc}	Escape
+{Space}	Space(这只适用于出现在要发送的字符串的开头或结尾的空格 -- 而在中间的空格是原义的)
+{Tab}	Tab
+{Backspace} 或 {BS}	Backspace
+{Delete} 或 {Del}	Delete
+{Insert} 或 {Ins}	Insert
+{Up}	↑(主键盘上的向上键)
+{Down}	↓(主键盘上的向下键)
+{Left}	←(主键盘上的向左键)
+{Right}	→(主键盘上的向右键)
+{Home}	Home(主键盘)
+{End}	End(主键盘)
+{PgUp}	PageUp(主键盘)
+{PgDn}	PageDown(主键盘)
+ 	 
+{CapsLock}	CapsLock(使用 SetCapsLockState 更可靠). 发送 {CapsLock} 之前可能要求 SetStoreCapsLockMode False.
+{ScrollLock}	ScrollLock(另请参阅: SetScrollLockState)
+{NumLock}	NumLock(另请参阅: SetNumLockState)
+ 	 
+{Control} 或 {Ctrl}	Control 键(技术信息: 发送中性键的虚拟键码而不是左边键的扫描码)
+{LControl} 或 {LCtrl}	左 Control 键(技术信息: 发送左边键的虚拟键码而不是中性键)
+{RControl} 或 {RCtrl}	右 Control 键
+{Control down} 或 {Ctrl down}	按住 Control 键直到发送 {Ctrl up}. 要按住左边或右边的键, 请使用 {RCtrl down} 和 {RCtrl up}.
+ 	 
+{Alt}	Alt 键(技术信息: 发送中性键的虚拟键码而不是左边键的扫描码)
+{LAlt}	左 Alt 键(技术信息: 发送左边键的虚拟键码而不是中性键)
+{RAlt}	右 Alt 键(或 AltGr, 取决于键盘布局)
+{Alt down}	按住 Alt 键直到发送 {Alt up}. 要按住左边或右边的键, 请使用 {RAlt down} 或 {RAlt up}.
+ 	 
+{Shift}	Shift(技术信息: 发送中性键的虚拟键码而不是左边键的扫描码)
+{LShift}	左 Shift 键(技术信息: 发送左边键的虚拟键码而不是中性键)
+{RShift}	右 Shift 键
+{Shift down}	按住 Shift 键直到发送 {Shift up}. 要按住左边或右边的键, 请使用 {RShift down} 或 {RShift up}.
+ 	 
+{LWin}	左 Win 键
+{RWin}	右 Win 键
+{LWin down}	按住左 Win 键直到发送 {LWin up}
+{RWin down}	按住右 Win 键直到发送 {RWin up}
+ 	 
+{AppsKey}	Menu 键(调用右键点击或上下文菜单)
+{Sleep}	Sleep 键.
+{ASC nnnnn}	
+发送 Alt+nnnnn 小键盘上的按键组合, 可以用来生成键盘上不存在的特殊字符. 要生成 ASCII 字符, 请指定一个介于 1 和 255 之间的数字. 要生成 ANSI 字符(在大多数语言中的标准), 请指定一个介于 128 和 255 之间的数字, 但需要在数字前加上一个前导零, 例如 {Asc 0133}..
+
+要生成 Unicode 字符, 请指定一个介于 256 和 65535 之间的数字(不带前导零). 但是, 有些应用程序不支持这种方法. 对于替代方法, 请参阅下面的部分.
+
+{U+nnnn}	
+发送 Unicode 字符, 其中 nnnn 为字符的不包括 0x 前缀的十六进制值. 通常不需要这么做, 因为 Send 和 ControlSend 自动支持 Unicode 文本.
+
+会使用 SendInput() 或 WM_CHAR 来发送字符, 并且当前的发送模式没有效果. 以这种方式发送的字符通常不会触发快捷键或热键.
+
+{vkXX}
+{scYYY}
+{vkXXscYYY}
+
+发送虚拟键为 XX 和扫描码为 YYY 的按键. 例如: Send "{vkFFsc159}". 如果省略 sc 或 vk 部分, 则发送最合适的值.
+
+XX 和 YYY 的值是十六进制的, 通常可以从主窗口的 View->Key history 菜单项中确定. 另请参阅: 特殊按键
+
+警告: 以这种方式组合 vk 和 sc 仅在 Send 有效.
+
+ 	 
+{Numpad0} - {Numpad9}	小键盘上的数字键(与 NumLock 打开时输入的一样). 例如: {Numpad5} 为数字 5.
+{NumpadDot}	.(小键盘上的点)(与 NumLock 打开时输入的一样).
+{NumpadEnter}	小键盘上的 Enter 键
+{NumpadMult}	*(小键盘上的乘号)
+{NumpadDiv}	/(小键盘上的除号)
+{NumpadAdd}	+(小键盘上的加号)
+{NumpadSub}	-(小键盘上的减号)
+ 	 
+{NumpadDel}	小键盘上的 Delete 键(当 NumLock 为 OFF 时, 此键和以下的小键盘按键将被使用)
+{NumpadIns}	小键盘上的 Insert 键
+{NumpadClear}	小键盘上的 Clear 键(在 NumLock 关闭时, 通常为 '5' 键).
+{NumpadUp}	小键盘上的 ↑(向上) 键
+{NumpadDown}	小键盘上的 ↓(向下) 键
+{NumpadLeft}	小键盘上的 ←(向左) 键
+{NumpadRight}	小键盘上的 →(向右) 键
+{NumpadHome}	小键盘上的 Home 键
+{NumpadEnd}	小键盘上的 End 键
+{NumpadPgUp}	小键盘上的 PageUp 键
+{NumpadPgDn}	小键盘上的 PageDown 键
+ 	 
+{Browser_Back}	浏览器 "后退" 按钮
+{Browser_Forward}	浏览器 "前进" 按钮
+{Browser_Refresh}	浏览器 "刷新" 按钮
+{Browser_Stop}	浏览器 "停止" 按钮
+{Browser_Search}	浏览器 "搜索" 按钮
+{Browser_Favorites}	浏览器 "收藏" 按钮
+{Browser_Home}	启动浏览器并打开主页
+{Volume_Mute}	主音量静音/取消静音. 通常相当于 SoundSetMute -1.
+{Volume_Down}	减小主音量. 通常相当于 SoundSetVolume -5.
+{Volume_Up}	增加主音量. 通常相当于 SoundSetVolume "+5".
+{Media_Next}	在媒体播放器中播放下一曲目
+{Media_Prev}	在媒体播放器中播放前一曲目
+{Media_Stop}	停止媒体播放器
+{Media_Play_Pause}	播放/暂停媒体播放器
+{Launch_Mail}	启动电子邮件程序
+{Launch_Media}	启动媒体播放器
+{Launch_App1}	启动用户程序 1
+{Launch_App2}	启动用户程序 2
+ 	 
+{PrintScreen}	PrintScreen
+{CtrlBreak}	Ctrl+Pause
+{Pause}	Pause
+ 	 
+{Click [Options]}	Send 鼠标点击使用的选项与 Click 函数中的一样. 例如, Send "{Click}" 会在鼠标光标当前位置点击一次鼠标左键, 而 Send "{Click 100, 200}" 则在坐标 100, 200 处点击(这里的坐标模式取决于 CoordMode). 要移动鼠标而不点击, 请在坐标后指定 0; 例如: Send "{Click 100, 200, 0}". 鼠标点击之间的延迟由 SetMouseDelay 决定(而不是 SetKeyDelay).
+{WheelDown}, {WheelUp}, {WheelLeft}, {WheelRight}, {LButton}, {RButton}, {MButton}, {XButton1}, {XButton2}	
+在光标的当前位置发送一个鼠标按钮事件(要控制位置和其他选项, 请使用上面的 {Click}). 鼠标点击之间的延迟由 SetMouseDelay 决定.
+LButton and RButton correspond to the primary and secondary mouse buttons. Normally the primary mouse button (LButton) is on the left, but the user may swap the buttons via system settings.
+
+{Blind}	启用盲从模式, 通过禁用一些通常会自动完成的事情, 让脚本有了更多的控制权, 从而使事情一般都能正常工作. 字符串 {Blind} 必须出现在字符串的开头.
+{Raw}	启用原始模式, 这将导致以下字符按原义解释: ^+!#{}. 虽然字符串 {Raw} 不需要出现在字符串的开头, 但一旦指定, 它将在字符串的其余部分保持有效.
+{Text}	启用文本模式, 它发送的是字符流而不是按键.与原始模式一样, 文本模式会使以下字符按原义解释: ^+!#{}. 虽然字符串 {Text} 不需要出现在字符串的开头, 但一旦指定, 它将在字符串的其余部分保持有效.
